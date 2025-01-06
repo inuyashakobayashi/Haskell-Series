@@ -1,0 +1,1 @@
+Schule-Übungen für Haskell
