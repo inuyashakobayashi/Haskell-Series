@@ -199,4 +199,4 @@ add3 = \x y -> x + y
 successor :: (Num a) => a -> a
 successor a = a + 1
 
-demorgen a b = !(a & b) = !a || ! b
+demorgen a b = not (a && b) == not a || not b
