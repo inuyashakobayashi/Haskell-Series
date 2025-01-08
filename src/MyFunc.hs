@@ -110,3 +110,23 @@ mySumFlodl xs = foldl (\acc x -> acc + x) 0 xs
 myElemFoldl :: (Eq a) => a -> [a] -> Bool
 myElemFoldl _ [] = False
 myElemFoldl y ys = foldl (\acc x -> if x == y then True else acc) False ys
+
+myMapFoldr f xs = foldr (\x acc -> f x : acc) [] xs
+
+myMaximumFoldr1 :: (Ord a) => [a] -> a
+myMaximumFoldr1 = foldr1 (\x acc -> if x > acc then x else acc)
+
+myReverseFoldl :: [a] -> [a]
+myReverseFoldl = foldl (\acc x -> x : acc) []
+
+myProductFoldr1 :: (Num a) => [a] -> a
+myProductFoldr1 = foldr1 (*)
+
+myFilterFoldr :: (Foldable t) => (a -> Bool) -> t a -> [a]
+myFilterFoldr f = foldr (\x acc -> if f x then x : acc else acc) []
+
+myHeadFoldr1 :: [a] -> a
+myHeadFoldr1 = foldr1 (\x _ -> x)
+
+myLastFoldl1 :: [a] -> a
+myLastFoldl1 = foldl1 (\_ x -> x)
