@@ -63,3 +63,42 @@ myElem _ [] = False
 myElem x (y : ys)
   | x /= y = myElem x ys
   | otherwise = True
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x : xs) =
+  let smallerSorted = quicksort [a | a <- xs, a <= x]
+      biggerSorted = quicksort [a | a <- xs, a > x]
+   in smallerSorted ++ [x] ++ biggerSorted
+
+myQckS :: (Ord a) => [a] -> [a]
+myQckS [] = []
+myQckS (x : xs) = myQckS (smaller x xs) ++ [x] ++ myQckS (bigger x xs)
+  where
+    smaller pivot [] = []
+    smaller pivot xs = [y | y <- xs, y <= pivot]
+    bigger pivot [] = []
+    bigger pivot xs = [y | y <- xs, y > pivot]
+
+myZipWith _ [] _ = []
+myZipWith _ _ [] = []
+myZipWith f (x : xs) (y : ys) = f x y : myZipWith f xs ys
+
+myFlip :: (t1 -> t2 -> t3) -> t2 -> t1 -> t3
+myFlip f = g
+  where
+    g x y = f y x
+
+myMap :: (t -> a) -> [t] -> [a]
+myMap _ [] = []
+myMap f (x : xs) = f x : myMap f xs
+
+myFilter _ [] = []
+myFilter f (x : xs)
+  | f x = x : myFilter f xs
+  | otherwise = myFilter f xs
+
+myChain 1 = [1]
+myChain x
+  | odd x = x : myChain (x * 3 + 1)
+  | even x = x : myChain (x / 2)
