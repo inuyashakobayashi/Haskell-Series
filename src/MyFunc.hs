@@ -1,4 +1,5 @@
 import Distribution.Simple.Utils (xargs)
+import GHC.Exts.Heap (TsoFlags (TsoFlagsUnknownValue))
 
 myHead [] = error "error ,empty list kann nicht head machen"
 myHead (x : _) = x
@@ -102,3 +103,10 @@ myChain 1 = [1]
 myChain x
   | odd x = x : myChain (x * 3 + 1)
   | even x = x : myChain (x / 2)
+
+mySumFlodl :: (Foldable t, Num b) => t b -> b
+mySumFlodl xs = foldl (\acc x -> acc + x) 0 xs
+
+myElemFoldl :: (Eq a) => a -> [a] -> Bool
+myElemFoldl _ [] = False
+myElemFoldl y ys = foldl (\acc x -> if x == y then True else acc) False ys
