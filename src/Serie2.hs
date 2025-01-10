@@ -95,3 +95,5 @@ isHeavier (r1, d1) (r2, d2) = mass (r1, d1) > mass (r2, d2)
 
 relativeSize :: (Double, Double) -> (Double, Double) -> Double
 relativeSize (r1, d1) (r2, d2) = volume (r1, d1) / volume (r2, d2)
+
+-- es fehlt noch 2-3
