@@ -54,7 +54,7 @@ Erzeugt die Liste [100,81,64,49,36,25,16,9,4,1]
 
 str = ['a']
 
-fun0 p = p == p
+fun0 p = if p /= p then p else p
 
 logic a b = a && b
 
