@@ -22,7 +22,8 @@ apply f a = f a
 
 applyList f (x : xs) = map f (x : xs)
 
-applyString f (x : xs) = map (toUpper . f) (x : xs)
+applyString f "" = ""
+applyString f (x : xs) = f x : applyString f xs
 
 fun4 a b c = (a * b, c)
 
