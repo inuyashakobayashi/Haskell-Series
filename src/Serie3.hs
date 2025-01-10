@@ -46,3 +46,16 @@ listC input = [a^2|a<-input,odd $ a^2 , a^2 >= 100]
 listD input = [a `elem` listA input| a<-input ]
 
 listE = length [x | x <- listB, (x - 1) `mod` 5 == 0]
+
+
+
+containsSet :: (Foldable t, Eq a) => t a -> [a] -> Bool
+containsSet xs ys = and [ y `elem` xs|y<-ys]
+
+-- and func wenn alle true ist liefert ture
+
+filterDigit xs y = [x | x <- xs, elem y (show x)]
+
+deleteVowels xs = [x | x <- xs, x `notElem` ['a', 'o', 'e', 'i', 'u', 'A', 'E', 'O', 'U', 'I']]
+
+countElems xs ys = length [x | x <- xs, x `elem` ys]
