@@ -1,7 +1,5 @@
 module Serie3 where
 
-import Data.Char
-
 myLength :: [a] -> Integer
 myLength [] = 0
 myLength (x : xs) = 1 + myLength xs
@@ -28,3 +26,23 @@ applyString f (x : xs) = f x : applyString f xs
 fun4 a b c = (a * b, c)
 
 fun5 p = (* 9) : []
+
+intersect :: (Eq b) => (a -> b) -> (a -> b) -> [a] -> [(a, b)]
+intersect f g xs = [(a, f a) | a <- xs, b <- xs, f a == g b]
+
+higherFunktion f1 f2 a = if f1 a > f2 a then f1 a else f2 a
+
+nospace :: String -> (String, Integer)
+nospace xs = (filter (/= ' ') xs, fromIntegral (length (filter (== ' ') xs)))
+
+
+input = [1, -5, 3, 0, 11, 3, 25, 100, 7]
+listA input = [a|a <-input,a `elem` [1..7]]
+
+listB  = [a|a <-[1..100],a `mod` 6 == 0 && (a-2) `mod` 4 == 0 ]
+
+listC input = [a^2|a<-input,odd $ a^2 , a^2 >= 100]
+
+listD input = [a `elem` listA input| a<-input ]
+
+listE = length [x | x <- listB, (x - 1) `mod` 5 == 0]
