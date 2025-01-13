@@ -31,3 +31,10 @@ half :: [a] -> ([a], [a])
 half xs = splitAt n xs
   where
     n = length xs `div` 2
+
+msort :: (Ord a) => [a] -> [a]
+msort [] = []
+msort [x] = [x] -- Einelementige Liste ist bereits sortiert
+msort xs = merge (msort ys) (msort zs) -- Rekursiver Aufruf auf beiden Hälften
+  where
+    (ys, zs) = half xs
