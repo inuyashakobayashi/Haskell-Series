@@ -38,3 +38,16 @@ msort [x] = [x] -- Einelementige Liste ist bereits sortiert
 msort xs = merge (msort ys) (msort zs) -- Rekursiver Aufruf auf beiden Hälften
   where
     (ys, zs) = half xs
+
+moreOften :: (Eq a) => a -> a -> [a] -> Bool
+moreOften x y xs = count x xs > count y xs
+  where
+    count n = length . filter (== n)
+
+isPrime :: Integer -> Bool
+isPrime n
+  | n < 2 = False
+  | otherwise = n `elem` takeWhile (<= n) primes
+  where
+    primes = sieve [2 ..]
+    sieve (p : xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
